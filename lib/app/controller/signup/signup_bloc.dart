@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_delivery_app/app/services/api_services.dart';
 import 'package:meta/meta.dart';
 part 'signup_event.dart';
@@ -15,8 +16,12 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
   FutureOr<void> signUpButtonPressedEvent(
       SignUpButtonPressedEvent event, Emitter<SignupState> emit) async {
     try {
-      bool success = await ApiServices()
-          .signUpModel(event.name, event.email, event.password, event.mobile);
+      bool success = await ApiServices().signUpUser(
+          context: event.context,
+          email: event.email,
+          password: event.password,
+          name: event.name,
+          mobile: event.mobile);
 
       if (success) {
         emit(SignUpSuccessState());

@@ -41,7 +41,7 @@ class _SignUpState extends State<SignUp> {
         bloc: signupBloc,
         listener: (context, state) {
           if (state is SignUpSuccessState) {
-            showSuccessSnackBar(context, 'Registration successful ');
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignIn()));
           } else if (state is SignUpErrorState) {
             showErrorSnackBar(context, state.error);
           }
@@ -169,7 +169,8 @@ class _SignUpState extends State<SignUp> {
                               name: _nameController.text,
                               email: _emailController.text,
                               password: _passwordController.text,
-                              mobile: _numberController.text));
+                              mobile: _numberController.text,
+                              context: context));
                         }
                       },
                       text: 'Create An Account',
