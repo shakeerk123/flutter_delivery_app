@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery_app/app/view/home/home_screen.dart';
+import 'package:flutter_delivery_app/app/view/on_boarding/on_boarding.dart';
 
 
 void main() {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light(
         useMaterial3: true
       ),
-    home:const HomeScreen(), 
+    home:const OnboardingScreen(), 
     );
     
   }

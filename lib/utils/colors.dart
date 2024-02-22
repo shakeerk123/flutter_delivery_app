@@ -8,3 +8,21 @@ class AppColor {
   static Color kGrayscale40 = const Color(0XFFAEAEB2);
   static Color kGrayscaleDark100 = const Color(0XFF1C1C1E);
 }
+
+void showSuccessSnackBar(BuildContext context, String message) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(message),
+      backgroundColor: Colors.green,
+    ),
+  );
+}
+
+void showErrorSnackBar(BuildContext context, String message) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(message),
+      backgroundColor: Colors.red,
+    ),
+  );
+}
