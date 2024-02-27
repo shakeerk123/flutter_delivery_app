@@ -5,9 +5,7 @@ sealed class SignupState {}
 
 final class SignupInitial extends SignupState {}
 
-final class LoadingState extends SignupState{
-  
-}
+final class LoadingState extends SignupState {}
 
 final class SignUpSuccessState extends SignupState {}
 

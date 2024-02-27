@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_delivery_app/utils/constants/app_colors.dart';
+import 'package:flutter_delivery_app/utils/colors.dart';
 
 class AuthField extends StatefulWidget {
   final String title;
@@ -54,7 +54,7 @@ class _AuthFieldState extends State<AuthField> {
             fillColor: const Color(0xFFF6F6F6),
             filled: true,
             hintText: widget.hintText,
-            hintStyle: const TextStyle(color: AppColors.kGrey60),
+            hintStyle: const TextStyle(color: AppColor.kGrey60),
             suffixIcon: widget.isPassword
                 ? IconButton(
                     onPressed: () {

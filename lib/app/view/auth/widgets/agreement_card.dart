@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_delivery_app/utils/constants/app_colors.dart';
+import 'package:flutter_delivery_app/utils/colors.dart';
 
 class AgreeTermsTextCard extends StatelessWidget {
   const AgreeTermsTextCard({super.key});
@@ -15,7 +15,7 @@ class AgreeTermsTextCard extends StatelessWidget {
           style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w400,
-              color: AppColors.kGrey70),
+              color: AppColor.kGrey70),
           children: [
             TextSpan(
                 text: 'Terms',
@@ -23,20 +23,20 @@ class AgreeTermsTextCard extends StatelessWidget {
                 style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color: AppColors.kGrey100)),
+                    color: AppColor.kGrey100)),
             const TextSpan(
                 text: ' and ',
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color: AppColors.kGrey70)),
+                    color: AppColor.kGrey70)),
             TextSpan(
                 text: 'Conditions of Use',
                 recognizer: TapGestureRecognizer()..onTap = () {},
                 style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color: AppColors.kGrey100)),
+                    color: AppColor.kGrey100)),
           ],
         ),
         textAlign: TextAlign.center,

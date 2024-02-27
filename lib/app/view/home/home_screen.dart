@@ -1,6 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_delivery_app/app/controller/signin/bloc/signin_bloc.dart';
+import 'package:flutter_delivery_app/app/view/auth/sign_in.dart';
 import 'package:flutter_delivery_app/app/view/home/widgets/promo_card.dart';
 import 'package:flutter_delivery_app/utils/constants/image_path.dart';
 
@@ -14,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String selectedLocation = locationsList[0];
   int selectedIndex = 0;
+  SigninBloc signinBloc = SigninBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +35,13 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(8.0),
             child: Text("Delivo"),
           ),
-          
           actions: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    signinBloc.add(SignOutRequestedEvent());
+                  },
                   icon: const Icon(
                     Icons.notifications_none,
                     color: AppColors.kBlackColor,
@@ -44,45 +49,61 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 30),
-                  child: Text(
-                    "Discover good food around you",
-                    style: TextStyle(
-                        fontSize: 23,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.kBlackColor),
-                  ),
+        body: BlocConsumer<SigninBloc, SigninState>(
+          bloc: signinBloc,
+          listener: (context, state) {
+            if (state is SigninInitial || state is SignInSuccessState) {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SignIn()),
+                  (route) => false);
+            }
+          },
+          builder: (context, state) {
+            if (state is SignInLoadingState) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(left: 30),
+                      child: Text(
+                        "Discover good food around you",
+                        style: TextStyle(
+                            fontSize: 23,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.kBlackColor),
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    const MySearchBar(),
+                    const SizedBox(height: 20),
+                    const PromoCard(),
+                    const SizedBox(height: 20),
+                    SizedBox(
+                      height: 230,
+                      child: ListView.separated(
+                        padding: const EdgeInsets.only(left: 30),
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(width: 20),
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: foodList.length,
+                        itemBuilder: (context, index) {
+                          return ItemsCard(
+                              foodModel: foodList[index], onTap: () {});
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 30),
-                const MySearchBar(),
-                const SizedBox(height: 20),
-                PromoCard(),
-                
-                const SizedBox(height: 20),
-                SizedBox(
-                  height: 230,
-                  child: ListView.separated(
-                    padding: const EdgeInsets.only(left: 30),
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(width: 20),
-                    scrollDirection: Axis.horizontal,
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: foodList.length,
-                    itemBuilder: (context, index) {
-                      return ItemsCard(foodModel: foodList[index], onTap: () {});
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -368,7 +389,7 @@ List foodList = [
     title: "Bowl of Porridge with Fruits",
     description:
         "Bowl of Porridge with Fruits is a hearty “main dish” kind of salad with bold flavors. Chicken breasts are marinated in cilantro lime goodness, then seared until golden and added to a bed of romaine lettuce along with sweet corn, black beans, and grape tomatoes. A generous drizzle of creamy avocado dressing ties it all together. Chicken breasts are marinated in cilantro lime goodness, then seared until golden and added to a bed of romaine lettuce along with sweet corn, black beans, and grape tomatoes. A generous drizzle of creamy avocado dressing ties it all together.",
-    image:ImagesPath.kimage1,
+    image: ImagesPath.kimage1,
     detailImage: AppAssets.kDetailFood1,
     price: "9.67",
     rating: "4.5",
@@ -412,7 +433,7 @@ List foodList = [
     title: "Egg Delight with Vegetables",
     description:
         "Egg Delight with Vegetables is a hearty “main dish” kind of salad with bold flavors. Chicken breasts are marinated in cilantro lime goodness, then seared until golden and added to a bed of romaine lettuce along with sweet corn, black beans, and grape tomatoes. A generous drizzle of creamy avocado dressing ties it all together.",
-    image:ImagesPath.kimage5,
+    image: ImagesPath.kimage5,
     detailImage: AppAssets.kDetailFood2,
     price: "8.00",
     rating: "4.7",

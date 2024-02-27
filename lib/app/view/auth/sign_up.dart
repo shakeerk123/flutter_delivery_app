@@ -9,7 +9,6 @@ import 'package:flutter_delivery_app/app/view/auth/widgets/primary_button.dart';
 import 'package:flutter_delivery_app/app/view/auth/widgets/social_button.dart';
 import 'package:flutter_delivery_app/app/view/auth/widgets/text_divider.dart';
 import 'package:flutter_delivery_app/utils/colors.dart';
-import 'package:flutter_delivery_app/utils/constants/app_colors.dart';
 import 'package:flutter_delivery_app/utils/constants/image_path.dart';
 
 class SignUp extends StatefulWidget {
@@ -30,12 +29,12 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.kWhite,
+      backgroundColor: AppColor.kWhite,
       appBar: AppBar(
-          backgroundColor: AppColors.kWhite,
+          backgroundColor: AppColor.kWhite,
           elevation: 0,
           leading: const BackButton(
-            color: AppColors.kPrimary,
+            color: AppColor.kPrimary,
           )),
       body: BlocConsumer<SignupBloc, SignupState>(
         bloc: signupBloc,
@@ -130,7 +129,7 @@ class _SignUpState extends State<SignUp> {
                     const SizedBox(height: 20),
                     Row(
                       children: [
-                        SizedBox(),
+                        const SizedBox(),
                         const Spacer(),
                         RichText(
                           text: TextSpan(
@@ -138,7 +137,7 @@ class _SignUpState extends State<SignUp> {
                             style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
-                                color: AppColors.kGrey70),
+                                color: AppColor.kGrey70),
                             children: [
                               TextSpan(
                                 text: 'Sign In',
@@ -153,7 +152,7 @@ class _SignUpState extends State<SignUp> {
                                 style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700,
-                                    color: AppColors.kPrimary),
+                                    color: AppColor.kPrimary),
                               ),
                             ],
                           ),

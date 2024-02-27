@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_delivery_app/utils/constants/app_colors.dart';
+import 'package:flutter_delivery_app/utils/colors.dart';
 
 class PrimaryButton extends StatefulWidget {
   final VoidCallback onTap;
@@ -79,7 +79,7 @@ class _PrimaryButtonState extends State<PrimaryButton>
             child: Text(
               widget.text,
               style: TextStyle(
-                  color: widget.color == null ? AppColors.kWhite : Colors.black,
+                  color: widget.color == null ? AppColor.kWhite : Colors.black,
                   fontSize: widget.fontSize ?? 16,
                   fontWeight: FontWeight.w600),
             ),

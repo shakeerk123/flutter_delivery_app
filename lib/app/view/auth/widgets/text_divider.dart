@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_delivery_app/utils/constants/app_colors.dart';
+import 'package:flutter_delivery_app/utils/colors.dart';
 
 class TextWithDivider extends StatelessWidget {
   const TextWithDivider({super.key});
@@ -10,7 +10,7 @@ class TextWithDivider extends StatelessWidget {
       children: [
         Expanded(
           child: Divider(
-            color: AppColors.kGrey60,
+            color: AppColor.kGrey60,
           ),
         ),
         SizedBox(width: 20),
@@ -19,12 +19,12 @@ class TextWithDivider extends StatelessWidget {
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,
-            color: AppColors.kGrey60,
+            color: AppColor.kGrey60,
           ),
         ),
         SizedBox(width: 20),
         Expanded(
-          child: Divider(color: AppColors.kGrey60),
+          child: Divider(color: AppColor.kGrey60),
         ),
       ],
     );
